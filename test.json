@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Sukhumvit 1",
+    "gateway_id": 1,
+    "devices": [
+      {
+        "device_id": 1,
+        "device_name": "Air Con 1",
+        "device_type": 1,
+        "device_control": [
+          {
+            "control_id": 1,
+            "modbus_address": 300000,
+            "label": "fanspeed",
+            "control_value": 2
+          },
+          {
+            "control_id": 2,
+            "modbus_address": 300022,
+            "label": "tempset",
+            "control_value": 26
+          },
+          {
+            "control_id": 3,
+            "modbus_address": -1,
+            "label": "roomtemp",
+            "control_value": 0
+          }
+        ]
+      },
+      {
+        "device_id": 2,
+        "device_name": "C1",
+        "device_type": 4,
+        "device_control": [
+          {
+            "control_id": 1,
+            "modbus_address": 300100,
+            "label": "status",
+            "control_value": 20
+          }
+        ]
+      }
+    ]
+  }
+]
