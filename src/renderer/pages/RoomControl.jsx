@@ -12,6 +12,7 @@ const RoomControl = () => {
   const navigate = useNavigate();
   const { room_id } = useParams();
   const [room, setRoom] = useState(null);
+  const [isSending, setIsSending] = useState(false);
 
   const fetchRoom = async () => {
     const response = await window.api.getRoomById(room_id);
@@ -26,6 +27,8 @@ const RoomControl = () => {
 
   useEffect(() => {
     const handleReadData = (payload) => {
+      if (isSending) return; // ✅ ตอนนี้จะทำงานจริง
+      // console.log(payload);
       const {
         gateway_id,
         room_id: payloadRoomId,
@@ -47,6 +50,7 @@ const RoomControl = () => {
           ...prevRoom,
           devices: prevRoom.devices.map((device) => {
             if (device.device_id !== device_id) return device;
+
             return {
               ...device,
               device_control: device.device_control.map((control) =>
@@ -62,7 +66,7 @@ const RoomControl = () => {
 
     window.modbusAPI.onReadData(handleReadData);
     return () => window.modbusAPI.offReadData(handleReadData);
-  }, []);
+  }, [isSending]); //  สำคัญมาก
 
   const airDevices = useMemo(
     () => room?.devices?.filter((item) => item.device_type == 1) || [],
@@ -91,7 +95,13 @@ const RoomControl = () => {
         <div className="grid grid-cols-[250px_1fr] gap-2 h-full overflow-hidden">
           <div className="overflow-auto space-y-2">
             {airDevices.length > 0 ? (
-              <Air gateway_id={room?.gateway_id} airDevices={airDevices} />
+              <Air
+                isSending={isSending}
+                setIsSending={setIsSending}
+                setRoom={setRoom}
+                gateway_id={room?.gateway_id}
+                airDevices={airDevices}
+              />
             ) : (
               <p className="text-center text-opacity-50">No item device.</p>
             )}
@@ -100,12 +110,18 @@ const RoomControl = () => {
           <div className="overflow-auto space-y-2">
             {senceDevices.length > 0 && (
               <Sence
+                isSending={isSending}
+                setIsSending={setIsSending}
+                setRoom={setRoom}
                 gateway_id={room?.gateway_id}
                 senceDevices={senceDevices}
               />
             )}
             {lightDevices.length > 0 ? (
               <Light
+                setRoom={setRoom}
+                isSending={isSending}
+                setIsSending={setIsSending}
                 gateway_id={room?.gateway_id}
                 lightDevices={lightDevices}
               />

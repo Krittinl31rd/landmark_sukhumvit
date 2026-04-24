@@ -10,8 +10,10 @@ import { updateModbusStatus, getModbusStatus } from "./status";
 import { initData } from "../helpers/helper";
 import { mainWindow } from "../src/main/main";
 const MODBUS_CHUNK_SIZE = 100;
-const POLLING_INTERVAL_MS = 1000;
+const POLLING_INTERVAL_MS = 2500;
 const RECONNECT_DELAY_MS = 1000;
+const writeLocks = {}; // { ip: { address: timestamp } }
+const WRITE_LOCK_MS = 1500; // หน่วง 1.5 วิ
 
 export const cache = {};
 export const firstPollFlags = {};
@@ -156,22 +158,48 @@ export async function handlePolling(
       );
     }
 
-    if (hasQueue(ip)) {
+    // while (hasQueue(ip)) {
+    //   // if (hasQueue(ip)) {
+    //   task = getNextFromQueue(ip);
+    //   try {
+    //     client.setID(task.slaveId);
+    //     if (task.fc == 5) {
+    //       await client.writeCoil(task.address, task.value);
+    //     } else if (task.fc == 6) {
+    //       await client.writeRegister(task.address, task.value);
+    //     } else {
+    //       console.warn(`Unsupported FC in write task: ${task.fc}`);
+    //     }
+    //     console.log(
+    //       `Write success to ${ip}: FC ${task.fc}, Addr=${task.address}, Val=${task.value}`
+    //     );
+    //   } catch (err) {
+    //     console.error(`Write failed (FC ${task.fc}) on ${ip}:`, err.message);
+    //   }
+    // }
+
+    while (hasQueue(ip)) {
       task = getNextFromQueue(ip);
+
       try {
         client.setID(task.slaveId);
+
         if (task.fc == 5) {
           await client.writeCoil(task.address, task.value);
         } else if (task.fc == 6) {
           await client.writeRegister(task.address, task.value);
-        } else {
-          console.warn(`Unsupported FC in write task: ${task.fc}`);
+          await new Promise((r) => setTimeout(r, 100));
         }
+
+        // 🔥 lock address
+        if (!writeLocks[ip]) writeLocks[ip] = {};
+        writeLocks[ip][task.address] = Date.now();
+
         console.log(
           `Write success to ${ip}: FC ${task.fc}, Addr=${task.address}, Val=${task.value}`
         );
       } catch (err) {
-        console.error(`Write failed (FC ${task.fc}) on ${ip}:`, err.message);
+        console.error(`Write failed`, err.message);
       }
     }
 
@@ -190,6 +218,7 @@ export async function handlePolling(
     );
     if (changedData && changedData.length > 0) {
       if (firstPollFlags[ip]) {
+        console.log(changedData);
         onChangeCallback(ip, changedData);
       } else {
         await initData({ ip, changedData });
@@ -304,16 +333,26 @@ export async function PoolModbusData(
 
       try {
         const res = await client[fc](address, length);
+
         for (let i = 0; i < res.data.length; i++) {
           const addr = address + i;
           const val = res.data[i];
+          const now = Date.now();
 
           if (cache[ip][key][addr] !== val) {
+            // 🔥 เช็ค lock ตรงนี้เท่านั้น
+            const lockedAt = writeLocks[ip]?.[addr];
+
+            if (lockedAt && now - lockedAt < WRITE_LOCK_MS) {
+              continue; // ❌ ignore ค่าเด้ง
+            }
+
             newData.push({
               address: addr,
               value: val,
               fc: key,
             });
+
             cache[ip][key][addr] = val;
           }
         }

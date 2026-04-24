@@ -5,7 +5,7 @@ import { useAuth } from "../../contexts/UserContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const [form, setForm] = useState({ username: "admin", password: "123456" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const navigate = useNavigate();
   const { login, auth } = useAuth();
 

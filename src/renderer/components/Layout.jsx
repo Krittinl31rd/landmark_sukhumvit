@@ -17,15 +17,35 @@ import {
 } from "lucide-react";
 import Navbar from "./shared/Navbar";
 import Sidebar from "./shared/Sidebar";
+import { useAuth } from "../../contexts/UserContext";
 
+// 1 admin, 2 user
 const sidebarItem = [
-  { path: "/rooms", label: "Rooms Schedule", icon: <Calendar /> },
-  { path: "/rooms_control", label: "Rooms Control", icon: <SlidersVertical /> },
-  { path: "/setting_room", label: "Rooms Setting", icon: <Settings /> },
-  { path: "/setting", label: "Gateway", icon: <Router /> },
+  {
+    path: "/rooms",
+    label: "Rooms Schedule",
+    icon: <Calendar />,
+    roles: [1, 2],
+  },
+  {
+    path: "/rooms_control",
+    label: "Rooms Control",
+    icon: <SlidersVertical />,
+    roles: [1, 2],
+  },
+  {
+    path: "/setting_room",
+    label: "Rooms Setting",
+    icon: <Settings />,
+    roles: [1],
+  },
+  { path: "/setting", label: "Gateway", icon: <Router />, roles: [1] },
 ];
-
 const Layout = () => {
+  const { auth } = useAuth();
+  const filteredMenu = sidebarItem.filter((item) =>
+    item.roles.includes(auth?.user?.role_id)
+  );
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleDrawer = () => setSidebarOpen(!sidebarOpen);
 
@@ -50,7 +70,7 @@ const Layout = () => {
         </main>
       </div>
 
-      <Sidebar toggleDrawer={toggleDrawer} menuItems={sidebarItem} />
+      <Sidebar toggleDrawer={toggleDrawer} menuItems={filteredMenu} />
     </div>
   );
 };
