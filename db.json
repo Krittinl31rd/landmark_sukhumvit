@@ -10,7 +10,7 @@
       "read_discrete_inputs_start": 0,
       "read_discrete_inputs_length": 0,
       "read_holding_registers_start": 0,
-      "read_holding_registers_length": 500,
+      "read_holding_registers_length": 604,
       "read_input_registers_start": 0,
       "read_input_registers_length": 0
     }
@@ -29,12 +29,86 @@
       "role_id": 2
     }
   ],
+  "clockMaster": [
+    {
+      "gateway_id": 1,
+      "controls": [
+        {
+          "control_id": 1,
+          "modbus_address": 300599,
+          "label": "date",
+          "control_value": 22
+        },
+        {
+          "control_id": 2,
+          "modbus_address": 300600,
+          "label": "month",
+          "control_value": 6
+        },
+        {
+          "control_id": 3,
+          "modbus_address": 300601,
+          "label": "year",
+          "control_value": 26
+        },
+        {
+          "control_id": 4,
+          "modbus_address": 300602,
+          "label": "hour",
+          "control_value": 16
+        },
+        {
+          "control_id": 5,
+          "modbus_address": 300603,
+          "label": "min",
+          "control_value": 51
+        }
+      ]
+    }
+  ],
   "rooms": [
     {
       "id": 1,
       "name": "Sukhumvit 1",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "01:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -51,7 +125,7 @@
               "control_id": 2,
               "modbus_address": 300022,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 210
             },
             {
               "control_id": 3,
@@ -76,7 +150,7 @@
               "control_id": 2,
               "modbus_address": 300023,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 210
             },
             {
               "control_id": 3,
@@ -212,7 +286,7 @@
               "control_id": 1,
               "modbus_address": 300400,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -224,25 +298,25 @@
               "control_id": 3,
               "modbus_address": 300402,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300403,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300404,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300405,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -266,6 +340,43 @@
       "name": "Sukhumvit 2",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -307,7 +418,7 @@
               "control_id": 2,
               "modbus_address": 300025,
               "label": "tempset",
-              "control_value": 230
+              "control_value": 220
             },
             {
               "control_id": 3,
@@ -430,7 +541,7 @@
               "control_id": 1,
               "modbus_address": 300129,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -443,7 +554,7 @@
               "control_id": 1,
               "modbus_address": 300406,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -455,25 +566,25 @@
               "control_id": 3,
               "modbus_address": 300408,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300409,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300410,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300411,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 25
             }
           ]
         },
@@ -497,6 +608,43 @@
       "name": "Sukhumvit 3",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -513,7 +661,7 @@
               "control_id": 2,
               "modbus_address": 300026,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 0
             },
             {
               "control_id": 3,
@@ -538,7 +686,7 @@
               "control_id": 2,
               "modbus_address": 300027,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 0
             },
             {
               "control_id": 3,
@@ -557,7 +705,7 @@
               "control_id": 1,
               "modbus_address": 300140,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -570,7 +718,7 @@
               "control_id": 1,
               "modbus_address": 300141,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -583,7 +731,7 @@
               "control_id": 1,
               "modbus_address": 300142,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -596,7 +744,7 @@
               "control_id": 1,
               "modbus_address": 300143,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -609,7 +757,7 @@
               "control_id": 1,
               "modbus_address": 300144,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -622,7 +770,7 @@
               "control_id": 1,
               "modbus_address": 300145,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -635,7 +783,7 @@
               "control_id": 1,
               "modbus_address": 300146,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -648,7 +796,7 @@
               "control_id": 1,
               "modbus_address": 300148,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -661,7 +809,7 @@
               "control_id": 1,
               "modbus_address": 300150,
               "label": "status",
-              "control_value": 100
+              "control_value": 0
             }
           ]
         },
@@ -717,7 +865,7 @@
               "control_id": 1,
               "modbus_address": 300313,
               "label": "status",
-              "control_value": 1
+              "control_value": 0
             }
           ]
         }
@@ -728,6 +876,43 @@
       "name": "Sukhumvit 4",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -744,7 +929,7 @@
               "control_id": 2,
               "modbus_address": 300028,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -769,7 +954,7 @@
               "control_id": 2,
               "modbus_address": 300029,
               "label": "tempset",
-              "control_value": 210
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -918,7 +1103,7 @@
               "control_id": 1,
               "modbus_address": 300418,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -930,25 +1115,25 @@
               "control_id": 3,
               "modbus_address": 300420,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300421,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300422,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300423,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -972,6 +1157,43 @@
       "name": "Sukhumvit 5",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -988,7 +1210,7 @@
               "control_id": 2,
               "modbus_address": 300030,
               "label": "tempset",
-              "control_value": 210
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1013,7 +1235,7 @@
               "control_id": 2,
               "modbus_address": 300031,
               "label": "tempset",
-              "control_value": 210
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1162,7 +1384,7 @@
               "control_id": 1,
               "modbus_address": 300424,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -1174,25 +1396,25 @@
               "control_id": 3,
               "modbus_address": 300426,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300427,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300428,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300429,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -1216,6 +1438,43 @@
       "name": "Sukhumvit 6",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -1232,7 +1491,7 @@
               "control_id": 2,
               "modbus_address": 300032,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1257,7 +1516,7 @@
               "control_id": 2,
               "modbus_address": 300033,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1406,7 +1665,7 @@
               "control_id": 1,
               "modbus_address": 300430,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -1418,25 +1677,25 @@
               "control_id": 3,
               "modbus_address": 300432,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300433,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300434,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300435,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -1460,6 +1719,43 @@
       "name": "Sukhumvit 7",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -1476,7 +1772,7 @@
               "control_id": 2,
               "modbus_address": 300034,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1501,7 +1797,7 @@
               "control_id": 2,
               "modbus_address": 300035,
               "label": "tempset",
-              "control_value": 240
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1520,7 +1816,7 @@
               "control_id": 1,
               "modbus_address": 300220,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1533,7 +1829,7 @@
               "control_id": 1,
               "modbus_address": 300221,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1546,7 +1842,7 @@
               "control_id": 1,
               "modbus_address": 300222,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1559,7 +1855,7 @@
               "control_id": 1,
               "modbus_address": 300223,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1572,7 +1868,7 @@
               "control_id": 1,
               "modbus_address": 300224,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1585,7 +1881,7 @@
               "control_id": 1,
               "modbus_address": 300225,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1598,7 +1894,7 @@
               "control_id": 1,
               "modbus_address": 300228,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1611,7 +1907,7 @@
               "control_id": 1,
               "modbus_address": 300229,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1624,7 +1920,7 @@
               "control_id": 1,
               "modbus_address": 300230,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1637,7 +1933,7 @@
               "control_id": 1,
               "modbus_address": 300231,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1650,7 +1946,7 @@
               "control_id": 1,
               "modbus_address": 300436,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -1662,25 +1958,25 @@
               "control_id": 3,
               "modbus_address": 300438,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300439,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300440,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300441,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -1693,7 +1989,7 @@
               "control_id": 1,
               "modbus_address": 300317,
               "label": "status",
-              "control_value": 0
+              "control_value": 1
             }
           ]
         }
@@ -1704,6 +2000,43 @@
       "name": "Sukhumvit 8",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -1720,7 +2053,7 @@
               "control_id": 2,
               "modbus_address": 300036,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1745,7 +2078,7 @@
               "control_id": 2,
               "modbus_address": 300037,
               "label": "tempset",
-              "control_value": 240
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1764,7 +2097,7 @@
               "control_id": 1,
               "modbus_address": 300240,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1777,7 +2110,7 @@
               "control_id": 1,
               "modbus_address": 300241,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1790,7 +2123,7 @@
               "control_id": 1,
               "modbus_address": 300242,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1803,7 +2136,7 @@
               "control_id": 1,
               "modbus_address": 300243,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1816,7 +2149,7 @@
               "control_id": 1,
               "modbus_address": 300244,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1829,7 +2162,7 @@
               "control_id": 1,
               "modbus_address": 300245,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1842,7 +2175,7 @@
               "control_id": 1,
               "modbus_address": 300248,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1855,7 +2188,7 @@
               "control_id": 1,
               "modbus_address": 300249,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1868,7 +2201,7 @@
               "control_id": 1,
               "modbus_address": 300250,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1881,7 +2214,7 @@
               "control_id": 1,
               "modbus_address": 300251,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -1894,7 +2227,7 @@
               "control_id": 1,
               "modbus_address": 300442,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -1906,25 +2239,25 @@
               "control_id": 3,
               "modbus_address": 300444,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 4,
               "modbus_address": 300445,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300446,
               "label": "start_hour",
-              "control_value": 0
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300447,
               "label": "start_min",
-              "control_value": 0
+              "control_value": 10
             }
           ]
         },
@@ -1937,7 +2270,7 @@
               "control_id": 1,
               "modbus_address": 300318,
               "label": "status",
-              "control_value": 0
+              "control_value": 1
             }
           ]
         }
@@ -1948,6 +2281,43 @@
       "name": "Sukhumvit 9",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -1964,7 +2334,7 @@
               "control_id": 2,
               "modbus_address": 300038,
               "label": "tempset",
-              "control_value": 210
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -1989,7 +2359,7 @@
               "control_id": 2,
               "modbus_address": 300039,
               "label": "tempset",
-              "control_value": 210
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -2008,7 +2378,7 @@
               "control_id": 1,
               "modbus_address": 300260,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2021,7 +2391,7 @@
               "control_id": 1,
               "modbus_address": 300261,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2034,7 +2404,7 @@
               "control_id": 1,
               "modbus_address": 300262,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2047,7 +2417,7 @@
               "control_id": 1,
               "modbus_address": 300263,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2060,7 +2430,7 @@
               "control_id": 1,
               "modbus_address": 300264,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2073,7 +2443,7 @@
               "control_id": 1,
               "modbus_address": 300265,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2086,7 +2456,7 @@
               "control_id": 1,
               "modbus_address": 300268,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2099,7 +2469,7 @@
               "control_id": 1,
               "modbus_address": 300269,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2112,7 +2482,7 @@
               "control_id": 1,
               "modbus_address": 300270,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2125,7 +2495,7 @@
               "control_id": 1,
               "modbus_address": 300271,
               "label": "status",
-              "control_value": 0
+              "control_value": 100
             }
           ]
         },
@@ -2138,7 +2508,7 @@
               "control_id": 1,
               "modbus_address": 300448,
               "label": "timer_en",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 2,
@@ -2156,19 +2526,19 @@
               "control_id": 4,
               "modbus_address": 300451,
               "label": "start_min",
-              "control_value": 58
+              "control_value": 8
             },
             {
               "control_id": 5,
               "modbus_address": 300452,
               "label": "start_hour",
-              "control_value": 18
+              "control_value": 17
             },
             {
               "control_id": 6,
               "modbus_address": 300453,
               "label": "start_min",
-              "control_value": 1
+              "control_value": 10
             }
           ]
         },
@@ -2181,7 +2551,7 @@
               "control_id": 1,
               "modbus_address": 300319,
               "label": "status",
-              "control_value": 0
+              "control_value": 1
             }
           ]
         }
@@ -2192,6 +2562,43 @@
       "name": "Sukhumvit 10",
       "gateway_id": 1,
       "floor": "3",
+      "schedule": {
+        "mon": {
+          "enable": true,
+          "start": "17:08",
+          "end": "17:10"
+        },
+        "tue": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "wed": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "thu": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "fri": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sat": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        },
+        "sun": {
+          "enable": false,
+          "start": "00:00",
+          "end": "00:00"
+        }
+      },
       "devices": [
         {
           "device_id": 1,
@@ -2233,7 +2640,7 @@
               "control_id": 2,
               "modbus_address": 300041,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -2258,7 +2665,7 @@
               "control_id": 2,
               "modbus_address": 300042,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -2283,7 +2690,7 @@
               "control_id": 2,
               "modbus_address": 300043,
               "label": "tempset",
-              "control_value": 220
+              "control_value": 230
             },
             {
               "control_id": 3,
@@ -2555,7 +2962,7 @@
               "control_id": 2,
               "modbus_address": 300455,
               "label": "timer_onoff",
-              "control_value": 0
+              "control_value": 1
             },
             {
               "control_id": 3,
@@ -2567,19 +2974,19 @@
               "control_id": 4,
               "modbus_address": 300457,
               "label": "start_min",
-              "control_value": 56
+              "control_value": 59
             },
             {
               "control_id": 5,
               "modbus_address": 300458,
               "label": "start_hour",
-              "control_value": 17
+              "control_value": 18
             },
             {
               "control_id": 6,
               "modbus_address": 300459,
               "label": "start_min",
-              "control_value": 58
+              "control_value": 2
             }
           ]
         },

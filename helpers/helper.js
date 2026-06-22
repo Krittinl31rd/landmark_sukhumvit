@@ -2,6 +2,22 @@ import db from "../db/db";
 import { getModbusConfig } from "../db/modbus";
 import { getRooms } from "../db/room";
 
+const formatedDatatoModbusMulti = async (payload) => {
+  const gateways = await getModbusConfig();
+  const gateway = gateways.find((g) => g.id == payload.gateway_id);
+  const modbusAddrStr = payload.address?.toString() || "";
+
+  const ip = gateway?.ip;
+  const address = Number(modbusAddrStr.slice(1));
+  const slaveId = 1;
+
+  return {
+    ip,
+    address,
+    slaveId,
+  };
+};
+
 const fotmatedDataToModbus = async (payload) => {
   const gateways = await getModbusConfig();
   const gateway = gateways.find((g) => g.id == payload.gateway_id);
@@ -90,12 +106,12 @@ const initData = async (payload) => {
   await db.read();
   const gateways = db.data.modbusConfig || [];
   const rooms = db.data.rooms || [];
+  const clocks = db.data.clockMaster || [];
 
   const gateway = gateways.find((g) => g.ip === ip);
   if (!gateway) throw new Error("Gateway not found");
 
   const roomsOfGateway = rooms.filter((r) => r.gateway_id === gateway.id);
-
   const controlMap = new Map();
   for (const room of roomsOfGateway) {
     for (const dev of room.devices) {
@@ -105,10 +121,21 @@ const initData = async (payload) => {
     }
   }
 
+  const clocksOfGateway = clocks.filter((c) => c.gateway_id === gateway.id);
+  const controlClockMap = new Map();
+  for (const clock of clocksOfGateway) {
+    for (const ctrl of clock.controls) {
+      // console.log(ctrl);
+      controlClockMap.set(ctrl.modbus_address, ctrl);
+    }
+  }
+
   for (const { address, value, fc } of changedData) {
     const modbus_address = formatModbusAddress(fc, address);
     const ctrl = controlMap.get(modbus_address);
     if (ctrl) ctrl.control_value = value;
+    const ctrlClock = controlClockMap.get(modbus_address);
+    if (ctrlClock) ctrlClock.control_value = value;
   }
 
   await db.write();
@@ -173,7 +200,24 @@ const initDataChange = async ({
 //   // console.log("Updated control_value saved to db.json");
 // };
 
-export { fotmatedDataToModbus, formatedDataToClient, initData, initDataChange };
+const createDefaultSchedule = () => ({
+  mon: { enable: false, start: "00:00", end: "00:00" },
+  tue: { enable: false, start: "00:00", end: "00:00" },
+  wed: { enable: false, start: "00:00", end: "00:00" },
+  thu: { enable: false, start: "00:00", end: "00:00" },
+  fri: { enable: false, start: "00:00", end: "00:00" },
+  sat: { enable: false, start: "00:00", end: "00:00" },
+  sun: { enable: false, start: "00:00", end: "00:00" },
+});
+
+export {
+  createDefaultSchedule,
+  fotmatedDataToModbus,
+  formatedDataToClient,
+  initData,
+  initDataChange,
+  formatedDatatoModbusMulti,
+};
 
 // const formatedDataToClient = async (payload) => {
 //   console.log(payload);

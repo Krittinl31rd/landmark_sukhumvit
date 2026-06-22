@@ -40,7 +40,6 @@ export async function startModbus(mainWindow) {
           formattedObjects.push(obj);
           mainWindow.webContents.send("modbus-data2", obj);
         });
-
         // อัปเดต DB ทั้งก้อน (bulk update)
         if (dataArray.length) {
           await initData({ ip, changedData: dataArray });

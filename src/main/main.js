@@ -18,14 +18,18 @@ import {
   getRoomById,
   getRooms,
   updateRoom,
+  updateRoomSchedule,
 } from "../../db/room";
 import { addToQueue } from "../../modbus/queue";
 import {
   fotmatedDataToModbus,
   formatedDataToClient,
   initDataChange,
+  groupModbusTasks,
+  formatedDatatoModbusMulti,
 } from "../../helpers/helper";
 import db from "../../db/db";
+import { getColckMaster } from "../../db/clock";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -128,6 +132,16 @@ ipcMain.handle("delete-room", async (event, id) => {
   return res;
 });
 
+ipcMain.handle("get-clock", async (event) => {
+  const res = await getColckMaster();
+  // console.log(res);
+  return res;
+});
+
+ipcMain.handle("update-room-schedule", async (event, { roomId, schedule }) => {
+  return await updateRoomSchedule(roomId, schedule);
+});
+
 ipcMain.handle("getDataModbus", async (event) => {
   const res = await getCurrent();
   return res;
@@ -140,6 +154,17 @@ ipcMain.handle("writeData", async (event, payload) => {
     value: res.value,
     slaveId: res.slaveId,
     fc: res.fc,
+  });
+});
+
+ipcMain.handle("writeDataMulti", async (event, payloads) => {
+  const res = await formatedDatatoModbusMulti(payloads);
+  // console.log(payloads);
+  addToQueue(res.ip, {
+    address: res.address,
+    values: payloads.values,
+    slaveId: res.slaveId,
+    fc: payloads.fc,
   });
 });
 

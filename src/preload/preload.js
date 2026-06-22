@@ -18,6 +18,10 @@ contextBridge.exposeInMainWorld("api", {
   addRoomCSV: (payload) => ipcRenderer.invoke("add-room-csv", payload),
   updateRoom: (payload) => ipcRenderer.invoke("update-room", payload),
   deleteRoom: (id) => ipcRenderer.invoke("delete-room", id),
+
+  getClockMaster: () => ipcRenderer.invoke("get-clock"),
+  updateRoomSchedule: (payload) =>
+    ipcRenderer.invoke("update-room-schedule", payload),
 });
 
 contextBridge.exposeInMainWorld("modbusAPI", {
@@ -27,6 +31,7 @@ contextBridge.exposeInMainWorld("modbusAPI", {
     ipcRenderer.on("modbus-status", (_, data) => callback(data)),
   getData: () => ipcRenderer.invoke("getDataModbus"),
   writeData: (payload) => ipcRenderer.invoke("writeData", payload),
+  writeDataMulti: (payload) => ipcRenderer.invoke("writeDataMulti", payload),
   onReadData: (callback) =>
     ipcRenderer.on("modbus-data2", (_, data) => callback(data)),
   offReadData: (callback) =>

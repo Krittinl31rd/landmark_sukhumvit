@@ -63,8 +63,8 @@ const Layout = () => {
       <div className="drawer-content flex flex-col w-full">
         <Navbar toggleDrawer={toggleDrawer} />
 
-        <main className="pt-[80px] pl-4 pb-4 pr-4 bg-base-200 h-[calc(100vh-8px)] overflow-hidden flex flex-col">
-          <div className="flex-1 overflow-auto">
+        <main className="pt-[80px] pl-4 pb-4 pr-4 bg-base-200 h-[calc(100vh-8px)] flex flex-col overflow-hidden">
+          <div className="flex-1 min-h-0 overflow-auto">
             <Outlet />
           </div>
         </main>

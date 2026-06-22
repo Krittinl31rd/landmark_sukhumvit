@@ -1,3 +1,4 @@
+import { createDefaultSchedule } from "../helpers/helper";
 import db from "./db";
 
 const getRooms = async () => {
@@ -33,6 +34,7 @@ const addRoom = async (room) => {
       },
     };
   room.id = db.data.rooms.length + 1;
+  room.schedule = createDefaultSchedule();
   db.data.rooms.push(room);
   await db.write();
 
@@ -114,5 +116,38 @@ const deleteRoom = async (id) => {
 const deleteAllRoom = async () => {
   await db.read();
 };
+const updateRoomSchedule = async (roomId, schedule) => {
+  await db.read();
 
-export { getRooms, getRoomById, addRoom, updateRoom, deleteRoom, addRoomCSV };
+  const room = db.data.rooms.find((item) => Number(item.id) === Number(roomId));
+
+  if (!room) {
+    return {
+      result: {
+        success: false,
+        message: `Room ${roomId} not found.`,
+      },
+    };
+  }
+
+  room.schedule = schedule;
+
+  await db.write();
+
+  return {
+    result: {
+      success: true,
+      message: "Schedule updated successfully.",
+    },
+  };
+};
+
+export {
+  getRooms,
+  getRoomById,
+  addRoom,
+  updateRoom,
+  deleteRoom,
+  addRoomCSV,
+  updateRoomSchedule,
+};

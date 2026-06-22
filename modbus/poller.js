@@ -189,15 +189,15 @@ export async function handlePolling(
         } else if (task.fc == 6) {
           await client.writeRegister(task.address, task.value);
           await new Promise((r) => setTimeout(r, 100));
+        } else if (task.fc == 16) {
+          await client.writeRegisters(task.address, task.values);
         }
 
         // 🔥 lock address
         if (!writeLocks[ip]) writeLocks[ip] = {};
         writeLocks[ip][task.address] = Date.now();
 
-        console.log(
-          `Write success to ${ip}: FC ${task.fc}, Addr=${task.address}, Val=${task.value}`
-        );
+        console.log(`Write success to ${ip}`, task);
       } catch (err) {
         console.error(`Write failed`, err.message);
       }
